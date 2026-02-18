@@ -2,48 +2,285 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Innovation Hackathon</title>
+    <title>Innovation Hackathon | Innovation Fest</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #3b82f6;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 1.5rem 8%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        header a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            padding: 5rem 8%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.2rem;
+        }
+
+        section {
+            padding: 4rem 8%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.7rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            margin-top: 1.5rem;
+            font-weight: bold;
+            color: #facc15;
+        }
+
+        footer {
+            padding: 2rem 8%;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header class="navbar">
-    <div class="logo">Innovation Marathon 2026</div>
-    <nav>
-        <a href="../index.html">Home</a>
-    </nav>
+<header>
+    <a href="../index.html">← Back to Home</a>
 </header>
 
+<!-- 1️⃣ Event Title -->
 <section class="hero">
-    <div class="hero-content">
-        <h1>Innovation Hackathon</h1>
-        <p>24 Hours of Problem Solving & Innovation</p>
-        <a href="#" target="_blank">
-            <button>Register Now</button>
-        </a>
+    <h1>Innovation Hackathon</h1>
+    <p>24 Hours. One Prototype. Unlimited Impact.</p>
+</section>
+
+<!-- 2️⃣ Event Objective -->
+<section>
+    <h2>Event Objective</h2>
+    <div class="card">
+        <p>
+            The Innovation Hackathon aims to challenge participants to design and build innovative solutions to real-world problems within 24 hours.
+            This event encourages creativity, technical excellence, collaboration, and rapid problem-solving.
+        </p>
+        <br>
+        <p>
+            Participants will demonstrate their ability to ideate, prototype, and present impactful solutions under time constraints.
+            The event promotes innovation-driven thinking and practical implementation skills.
+        </p>
     </div>
 </section>
 
-<section class="section">
-    <h2>Description</h2>
-    <p>Participants build innovative solutions to real-world problems.</p>
-
-    <h2>Rules</h2>
-    <p>Team of 2-4 members. No plagiarism allowed.</p>
-
-    <h2>Eligibility</h2>
-    <p>Open to all UG students.</p>
-
-    <h2>Timeline</h2>
-    <p>Day 1: Idea Submission | Day 2: Final Presentation</p>
-
-    <h2>Prize</h2>
-    <p>1st Prize: ₹25,000</p>
-
-    <h2>Coordinators</h2>
-    <p>Faculty: Dr. XYZ | Student: ABC</p>
+<!-- 3️⃣ Team Formation -->
+<section>
+    <h2>Team Formation</h2>
+    <div class="card">
+        <ul>
+            <li>Team Size: Minimum 2 and Maximum 4 members.</li>
+            <li>Individual participation is not allowed.</li>
+            <li>Open to all departments and all years.</li>
+            <li>Cross-department teams are allowed.</li>
+            <li>Cross-college participation is not allowed.</li>
+            <li>Limited to 30 teams (first come, first served).</li>
+            <li>No team member substitution after registration closes.</li>
+        </ul>
+    </div>
 </section>
+
+<!-- 4️⃣ Activity Coordinators -->
+<section>
+    <h2>Activity Coordinator(s)</h2>
+    <div class="card">
+        <ul>
+            <li><strong>Dr. Arun Kumar</strong> – Faculty Coordinator<br>📞 +91 98765 43210<br>📧 arun.kumar@college.edu</li>
+            <br>
+            <li><strong>Ms. Priya Nair</strong> – Student Coordinator<br>📞 +91 91234 56789<br>📧 priyanair@college.edu</li>
+        </ul>
+    </div>
+</section>
+
+<!-- 5️⃣ Venue -->
+<section>
+    <h2>Venue</h2>
+    <div class="card">
+        <p>Innovation Lab – Block C, 3rd Floor</p>
+        <p>Reporting Location: Seminar Hall – Block C</p>
+    </div>
+</section>
+
+<!-- 6️⃣ Date -->
+<section>
+    <h2>Date</h2>
+    <div class="card">
+        <p>Saturday, 12 March 2026</p>
+    </div>
+</section>
+
+<!-- 7️⃣ Complete Event Timeline -->
+<section>
+    <h2>Complete Event Timeline</h2>
+    <div class="card">
+        <div class="timeline-item">Reporting Time – 08:30 AM</div>
+        <div class="timeline-item">Registration Closes – 09:00 AM</div>
+        <div class="timeline-item">Briefing Session – 09:15 AM</div>
+        <div class="timeline-item">Hackathon Start – 10:00 AM</div>
+        <div class="timeline-item">Midnight Review – 12:00 AM</div>
+        <div class="timeline-item">Final Submission – 10:00 AM (Next Day)</div>
+        <div class="timeline-item">Evaluation – 11:00 AM</div>
+        <div class="timeline-item">Results Announcement – 01:00 PM</div>
+        <div class="timeline-item">Expected End Time – 02:00 PM</div>
+    </div>
+</section>
+
+<!-- 8️⃣ Rules -->
+<section>
+    <h2>Rules & Regulations</h2>
+    <div class="card">
+        <ol>
+            <li>All participants must carry valid college ID cards.</li>
+            <li>Teams must adhere strictly to the problem statement provided.</li>
+            <li>Internet usage is allowed for research purposes only.</li>
+            <li>Plagiarism will result in immediate disqualification.</li>
+            <li>Pre-built projects are strictly prohibited.</li>
+            <li>All submissions must be completed before the deadline.</li>
+            <li>Judges’ decisions will be final and binding.</li>
+            <li>Any form of misconduct will lead to disqualification.</li>
+        </ol>
+
+        <p class="highlight">
+            Please read the complete guidelines carefully. No repetition of instructions will be provided during the activity.
+        </p>
+    </div>
+</section>
+
+<!-- 9️⃣ Complete Event Workflow -->
+<section>
+    <h2>Complete Event Workflow (End-to-End Process)</h2>
+    <div class="card">
+        <ol>
+            <li><strong>Reporting and Verification:</strong> Teams report and complete attendance verification.</li>
+            <li><strong>Orientation and Briefing:</strong> Problem statements and evaluation criteria explained.</li>
+            <li><strong>Round 1 Execution:</strong> Ideation and prototype development begins.</li>
+            <li><strong>Shortlisting Process:</strong> Midnight progress evaluation and mentor feedback.</li>
+            <li><strong>Final Round:</strong> Final prototype refinement and preparation.</li>
+            <li><strong>Submission Procedure:</strong> Teams submit GitHub repository and presentation deck.</li>
+            <li><strong>Evaluation Process:</strong> Judges evaluate based on criteria and live demo.</li>
+            <li><strong>Result Declaration:</strong> Scores compiled and winners announced.</li>
+        </ol>
+    </div>
+</section>
+
+<!-- 🔟 Judging Criteria -->
+<section>
+    <h2>Winning / Judging Criteria</h2>
+    <div class="card">
+        <ul>
+            <li>Innovation – 30%</li>
+            <li>Technical Depth – 25%</li>
+            <li>Practical Implementation – 20%</li>
+            <li>Presentation – 15%</li>
+            <li>Feasibility – 10%</li>
+        </ul>
+        <br>
+        <p>Judges’ decision will be final and binding.</p>
+    </div>
+</section>
+
+<!-- 1️⃣1️⃣ Rewards -->
+<section>
+    <h2>Rewards & Prizes</h2>
+    <div class="card">
+        <p><strong>🏆 1st Prize:</strong></p>
+        <ul>
+            <li>₹10,000 Cash Prize</li>
+            <li>Trophy</li>
+            <li>Winner Certificate</li>
+        </ul>
+        <br>
+
+        <p><strong>🥈 2nd Prize:</strong></p>
+        <ul>
+            <li>₹5,000 Cash Prize</li>
+            <li>Medal</li>
+            <li>Runner-up Certificate</li>
+        </ul>
+        <br>
+
+        <p><strong>🎖 Participation:</strong></p>
+        <ul>
+            <li>Digital Participation Certificate</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    © 2026 Innovation Fest | All Rights Reserved
+</footer>
 
 </body>
 </html>
