@@ -273,6 +273,27 @@
         margin: 0 auto;
     }
 
+    /* Technical Arena Section */
+    #events-section {
+        padding-top: 10px; /* Reduce space from top */
+        padding-bottom: 120px; /* Keep some space below */
+    }
+
+    #events-section .grid-header {
+        margin-bottom: 2rem; /* Reduce space between header and event cards */
+    }
+
+    #events-section .grid-header h2 {
+        font-size: 2.5rem; /* optional: adjust size */
+        margin-bottom: 0.5rem; /* tighten space under heading */
+    }
+
+    #events-section .grid-header p {
+        margin-bottom: 2rem; /* spacing to cards */
+        color: #888;
+    }
+
+
     .events-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
@@ -367,13 +388,12 @@
         <!-- --- HOME PAGE --- -->
         <div id="home-page" class="page-content active">
             <section class="hero">
-                <div class="hero-badge">ANNUAL TECHNICAL FESTIVAL 2026</div>
+                <div class="hero-badge">TECHNICAL FESTIVAL 2026</div>
                 <h1>Innovation<br><span style="color: #666;">Marathon</span></h1>
-                <p>The ultimate 48-hour collision of technology, creativity, and student excellence. Where the future is built by you.</p>
-                
+                <p>The ultimate Two-Day collision of technology, creativity, and student excellence. Where the future is built by you.</p>
+
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="scrollToId('events-section')">Explore Events</button>
-                    <button class="btn btn-outline" onclick="scrollToId('about-section')">Watch Trailer</button>
                 </div>
 
             </section>
@@ -392,7 +412,7 @@
             <section id="events-section" class="section-container">
                 <div class="grid-header">
                     <h2>Technical Arena</h2>
-                    <p style="color: #666;">Choose your battlefield. Compete with the best minds across departments.</p>
+                    <h5> <p style="color: #666;">Choose your battlefield. Compete with the best minds across departments.</p></h5>
                 </div>
                 <div class="events-grid" id="events-list">
                     <!-- Events injected by JS -->
