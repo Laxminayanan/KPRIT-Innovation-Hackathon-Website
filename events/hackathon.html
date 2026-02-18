@@ -2,284 +2,265 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Innovation Hackathon | Innovation Fest</title>
+    <title>Innovation Hackathon | Innovation Marathon 2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #111827;
-            --primary: #3b82f6;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: rgba(255,255,255,0.08);
+            --bg: #030303;
+            --text: #ffffff;
+            --primary: #8b5cf6;
+            --secondary: #06b6d4;
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.08);
+            --card-bg: rgba(10,10,10,0.6);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            font-family: var(--font-main);
+            overflow-x: hidden;
         }
 
+        /* Glow Background */
+        .glow-sphere {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent 70%);
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* Header */
         header {
-            padding: 1.5rem 8%;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 100;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            padding: 1rem 2rem;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
         }
 
         header a {
-            color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
+            color: #888;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
+        header a:hover {
+            color: #fff;
+        }
+
+        /* Hero */
         .hero {
-            padding: 5rem 8%;
+            padding-top: 180px;
+            padding-bottom: 120px;
             text-align: center;
         }
 
+        .hero-badge {
+            padding: 6px 16px;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.2);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 5rem);
+            letter-spacing: -2px;
             margin-bottom: 1rem;
         }
 
         .hero p {
-            color: var(--muted);
+            color: #888;
             font-size: 1.2rem;
+            max-width: 700px;
+            margin: auto;
         }
 
-        section {
-            padding: 4rem 8%;
-            border-bottom: 1px solid var(--border);
+        /* Sections */
+        .section-container {
+            padding: 100px 8%;
+            max-width: 1200px;
+            margin: auto;
         }
 
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
         }
 
+        /* Glass Card */
         .card {
-            background: var(--card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.5s cubic-bezier(0.2,1,0.3,1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(20,20,20,0.8);
+        }
+
+        .card p, .card li {
+            color: #aaa;
+            line-height: 1.8;
         }
 
         ul, ol {
-            padding-left: 1.5rem;
+            padding-left: 1.2rem;
         }
 
-        li {
-            margin-bottom: 0.7rem;
-        }
-
-        .timeline-item {
-            margin-bottom: 1rem;
-        }
-
-        .highlight {
+        .highlight-warning {
             margin-top: 1.5rem;
-            font-weight: bold;
-            color: #facc15;
+            font-weight: 700;
+            color: var(--secondary);
         }
 
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #fff;
+            color: #000;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,255,255,0.2);
+        }
+
+        /* Footer */
         footer {
-            padding: 2rem 8%;
+            padding: 5rem 8%;
+            border-top: 1px solid var(--glass-border);
             text-align: center;
-            color: var(--muted);
+            color: #555;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+            header { width: 95%; padding: 0.8rem 1.2rem; }
         }
     </style>
 </head>
 <body>
 
+<div class="glow-sphere" style="top:-10%;left:-10%;"></div>
+<div class="glow-sphere" style="bottom:-10%;right:-10%;background:var(--secondary);"></div>
+
 <header>
+    <div class="logo">INNOVATION MARATHON</div>
     <a href="../index.html">← Back to Home</a>
 </header>
 
-<!-- 1️⃣ Event Title -->
 <section class="hero">
+    <div class="hero-badge">FLAGSHIP EVENT</div>
     <h1>Innovation Hackathon</h1>
     <p>24 Hours. One Prototype. Unlimited Impact.</p>
 </section>
 
-<!-- 2️⃣ Event Objective -->
-<section>
-    <h2>Event Objective</h2>
-    <div class="card">
-        <p>
-            The Innovation Hackathon aims to challenge participants to design and build innovative solutions to real-world problems within 24 hours.
-            This event encourages creativity, technical excellence, collaboration, and rapid problem-solving.
-        </p>
-        <br>
-        <p>
-            Participants will demonstrate their ability to ideate, prototype, and present impactful solutions under time constraints.
-            The event promotes innovation-driven thinking and practical implementation skills.
-        </p>
-    </div>
-</section>
+<div class="section-container">
 
-<!-- 3️⃣ Team Formation -->
-<section>
-    <h2>Team Formation</h2>
+    <h2 class="section-title">Event Objective</h2>
+    <div class="card">
+        <p>The Innovation Hackathon challenges participants to ideate, design, and build a working prototype that solves real-world problems within 24 hours. The focus is on creativity, technical depth, feasibility, and real-world impact.</p>
+    </div>
+
+    <h2 class="section-title">Team Formation</h2>
     <div class="card">
         <ul>
-            <li>Team Size: Minimum 2 and Maximum 4 members.</li>
-            <li>Individual participation is not allowed.</li>
-            <li>Open to all departments and all years.</li>
-            <li>Cross-department teams are allowed.</li>
-            <li>Cross-college participation is not allowed.</li>
-            <li>Limited to 30 teams (first come, first served).</li>
-            <li>No team member substitution after registration closes.</li>
+            <li>Team size: 2–4 members</li>
+            <li>Open to all departments and years</li>
+            <li>Cross-department teams allowed</li>
+            <li>No changes after registration closes</li>
         </ul>
     </div>
-</section>
-
-<!-- 4️⃣ Activity Coordinators -->
-<section>
-    <h2>Activity Coordinator(s)</h2>
+   
+    <h2 class="section-title">Event Intel</h2>
     <div class="card">
-        <ul>
-            <li><strong>Dr. Arun Kumar</strong> – Faculty Coordinator<br>📞 +91 98765 43210<br>📧 arun.kumar@college.edu</li>
-            <br>
-            <li><strong>Ms. Priya Nair</strong> – Student Coordinator<br>📞 +91 91234 56789<br>📧 priyanair@college.edu</li>
-        </ul>
+        <p><strong>Date:</strong> 12–13 March 2026</p>
+        <p><strong>Venue:</strong> Innovation Lab – Block C</p>
+        <p><strong>Start Time:</strong> 10:00 AM</p>
+        <p><strong>Expected End:</strong> 02:00 PM (Next Day)</p>
     </div>
-</section>
 
-<!-- 5️⃣ Venue -->
-<section>
-    <h2>Venue</h2>
-    <div class="card">
-        <p>Innovation Lab – Block C, 3rd Floor</p>
-        <p>Reporting Location: Seminar Hall – Block C</p>
-    </div>
-</section>
-
-<!-- 6️⃣ Date -->
-<section>
-    <h2>Date</h2>
-    <div class="card">
-        <p>Saturday, 12 March 2026</p>
-    </div>
-</section>
-
-<!-- 7️⃣ Complete Event Timeline -->
-<section>
-    <h2>Complete Event Timeline</h2>
-    <div class="card">
-        <div class="timeline-item">Reporting Time – 08:30 AM</div>
-        <div class="timeline-item">Registration Closes – 09:00 AM</div>
-        <div class="timeline-item">Briefing Session – 09:15 AM</div>
-        <div class="timeline-item">Hackathon Start – 10:00 AM</div>
-        <div class="timeline-item">Midnight Review – 12:00 AM</div>
-        <div class="timeline-item">Final Submission – 10:00 AM (Next Day)</div>
-        <div class="timeline-item">Evaluation – 11:00 AM</div>
-        <div class="timeline-item">Results Announcement – 01:00 PM</div>
-        <div class="timeline-item">Expected End Time – 02:00 PM</div>
-    </div>
-</section>
-
-<!-- 8️⃣ Rules -->
-<section>
-    <h2>Rules & Regulations</h2>
+    <h2 class="section-title">Rules</h2>
     <div class="card">
         <ol>
-            <li>All participants must carry valid college ID cards.</li>
-            <li>Teams must adhere strictly to the problem statement provided.</li>
-            <li>Internet usage is allowed for research purposes only.</li>
-            <li>Plagiarism will result in immediate disqualification.</li>
-            <li>Pre-built projects are strictly prohibited.</li>
-            <li>All submissions must be completed before the deadline.</li>
-            <li>Judges’ decisions will be final and binding.</li>
-            <li>Any form of misconduct will lead to disqualification.</li>
+            <li>Fresh development only.</li>
+            <li>No plagiarism allowed.</li>
+            <li>Teams must present live demo.</li>
+            <li>Judges’ decision is final.</li>
         </ol>
 
-        <p class="highlight">
+        <p class="highlight-warning">
             Please read the complete guidelines carefully. No repetition of instructions will be provided during the activity.
         </p>
     </div>
-</section>
 
-<!-- 9️⃣ Complete Event Workflow -->
-<section>
-    <h2>Complete Event Workflow (End-to-End Process)</h2>
+    <h2 class="section-title">Rewards & Prizes</h2>
     <div class="card">
-        <ol>
-            <li><strong>Reporting and Verification:</strong> Teams report and complete attendance verification.</li>
-            <li><strong>Orientation and Briefing:</strong> Problem statements and evaluation criteria explained.</li>
-            <li><strong>Round 1 Execution:</strong> Ideation and prototype development begins.</li>
-            <li><strong>Shortlisting Process:</strong> Midnight progress evaluation and mentor feedback.</li>
-            <li><strong>Final Round:</strong> Final prototype refinement and preparation.</li>
-            <li><strong>Submission Procedure:</strong> Teams submit GitHub repository and presentation deck.</li>
-            <li><strong>Evaluation Process:</strong> Judges evaluate based on criteria and live demo.</li>
-            <li><strong>Result Declaration:</strong> Scores compiled and winners announced.</li>
-        </ol>
+        <p><strong>1st Prize:</strong> ₹10,000 + Trophy + Certificate</p>
+        <p><strong>2nd Prize:</strong> ₹5,000 + Medal + Certificate</p>
+        <p><strong>Participation:</strong> Digital Certificates</p>
     </div>
-</section>
 
-<!-- 🔟 Judging Criteria -->
-<section>
-    <h2>Winning / Judging Criteria</h2>
-    <div class="card">
-        <ul>
-            <li>Innovation – 30%</li>
-            <li>Technical Depth – 25%</li>
-            <li>Practical Implementation – 20%</li>
-            <li>Presentation – 15%</li>
-            <li>Feasibility – 10%</li>
-        </ul>
-        <br>
-        <p>Judges’ decision will be final and binding.</p>
-    </div>
-</section>
+    <a href="#" class="btn">Register Now</a>
 
-<!-- 1️⃣1️⃣ Rewards -->
-<section>
-    <h2>Rewards & Prizes</h2>
-    <div class="card">
-        <p><strong>🏆 1st Prize:</strong></p>
-        <ul>
-            <li>₹10,000 Cash Prize</li>
-            <li>Trophy</li>
-            <li>Winner Certificate</li>
-        </ul>
-        <br>
-
-        <p><strong>🥈 2nd Prize:</strong></p>
-        <ul>
-            <li>₹5,000 Cash Prize</li>
-            <li>Medal</li>
-            <li>Runner-up Certificate</li>
-        </ul>
-        <br>
-
-        <p><strong>🎖 Participation:</strong></p>
-        <ul>
-            <li>Digital Participation Certificate</li>
-        </ul>
-    </div>
-</section>
+</div>
 
 <footer>
-    © 2026 Innovation Fest | All Rights Reserved
+    © 2026 Innovation Marathon | Built by CSE 2nd Year
 </footer>
 
 </body>
