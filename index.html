@@ -137,6 +137,39 @@
             padding: 0 5%;
         }
 
+        /* --- Hero Gallery --- */
+
+        .hero-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .image-card img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+
         .hero-badge {
             padding: 6px 16px;
             background: rgba(139, 92, 246, 0.1);
@@ -299,11 +332,29 @@
                 <div class="hero-badge">ANNUAL TECHNICAL FESTIVAL 2026</div>
                 <h1>Innovation<br><span style="color: #666;">Marathon</span></h1>
                 <p>The ultimate 48-hour collision of technology, creativity, and student excellence. Where the future is built by you.</p>
+                
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="scrollToId('events-section')">Explore Events</button>
                     <button class="btn btn-outline" onclick="scrollToId('about-section')">Watch Trailer</button>
                 </div>
+
+                <!-- College Logos Added Here -->
+                <div class="hero-gallery">
+                    <div class="image-card">
+                        <img src="assets/images/KPRIT-OU-Logo.png" alt="KPRIT OU Logo">
+                    </div>
+                    <div class="image-card">
+                        <img src="assets/images/KPRIT-JNTUH-Logo.png" alt="KPRIT JNTUH Logo">
+                    </div>
+                    <div class="image-card">
+                        <img src="assets/images/KPRES-Logo.png" alt="KPRES Logo">
+                    </div>
+                    <div class="image-card">
+                        <img src="assets/images/College-Accredations-Logo.png" alt="College Accreditations">
+                    </div>
+                </div>
             </section>
+
 
             <section id="about-section" class="section-container">
                 <div class="detail-card" style="text-align: center; border-color: var(--primary);">
@@ -377,26 +428,26 @@
     </div>
 
     <script>
-            const eventsData = {
-                hackathon: {
-                    file: "hackathon.html"
-                },
-                techbuzz: {
-                    file: "techbuzz.html"
-                },
-                prompt: {
-                    file: "prompt-writing.html"
-                },
-                debugging: {
-                    file: "debugging.html"
-                },
-                techhunt: {
-                    file: "techhunt.html"
-                },
-                esports: {
-                    file: "photography-esports.html"
-                }
-            };
+        const eventsData = {
+            hackathon: {
+                file: "hackathon.html"
+            },
+            techbuzz: {
+                file: "techbuzz.html"
+            },
+            prompt: {
+                file: "prompt-writing.html"
+            },
+            debugging: {
+                file: "debugging.html"
+            },
+            techhunt: {
+                file: "techhunt.html"
+            },
+            esports: {
+                file: "photography-esports.html"
+            }
+        };
 
             // --- Core Engine ---
             function init() {
