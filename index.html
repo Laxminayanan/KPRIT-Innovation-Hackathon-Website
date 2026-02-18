@@ -136,14 +136,14 @@
     /* First Row – 3 Logos */
     .top-institutional-bar {
         width: 100%;
-        max-width: 1100px;   /* IMPORTANT */
-        margin: 0 auto 1.5rem auto;  /* center it */
+        max-width: 1200px;
+        margin: 0 auto 1.5rem auto;
         display: flex;
         align-items: center;
-        justify-content: center;     /* center content */
-        gap: 4rem;                   /* control spacing */
+        justify-content: center;
+        gap: 2rem;
+        padding: 0 1rem;
     }
-
 
     .top-institutional-bar img {
         object-fit: contain;
@@ -157,15 +157,18 @@
     /* Side Logos */
     .logo-left,
     .logo-right {
-        width: 150px;
-        opacity: 0.9;
+        width: 140px;
+        flex-shrink: 0;
     }
+
 
     /* Center College Name */
     .logo-center {
-        width: 650px;
-        max-width: 100%;
+        flex: 1;
+        max-width: 600px;
+        height: auto;
     }
+
 
     /* ================= Accreditation Banner ================= */
 
@@ -306,27 +309,35 @@
     }
 
     /* ========================= MOBILE OPTIMIZATION ========================= */
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
 
         .top-institutional-bar {
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 1.5rem;
+            padding: 0;   /* remove desktop padding */
         }
 
         .logo-left,
         .logo-right {
             width: 120px;
+            flex-shrink: 0;   /* keep proper sizing */
         }
 
         .logo-center {
             width: 220px;
+            max-width: 100%;
+            flex: none;   /* override desktop flex:1 */
         }
 
         .accreditation-logo {
             width: 100%;
+            max-width: 100%;
+            height: auto;
         }
     }
+
 
 
     </style>
