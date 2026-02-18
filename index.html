@@ -123,13 +123,25 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Institutional Top Banner */
-   .top-institutional-bar {
+    /* ================= Institutional Top Banner ================= */
+
+    .top-institutional-wrapper {
         width: 100%;
-        padding: 2rem 5%;
-        display: grid;
-        grid-template-columns: auto 1fr auto;
+        padding: 2rem 5% 1rem;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+    }
+
+    /* First Row – 3 Logos */
+    .top-institutional-bar {
+        width: 100%;
+        max-width: 1100px;   /* IMPORTANT */
+        margin: 0 auto 1.5rem auto;  /* center it */
+        display: flex;
+        align-items: center;
+        justify-content: center;     /* center content */
+        gap: 4rem;                   /* control spacing */
     }
 
 
@@ -142,22 +154,46 @@
         transform: scale(1.05);
     }
 
+    /* Side Logos */
     .logo-left,
     .logo-right {
         width: 150px;
         opacity: 0.9;
     }
 
+    /* Center College Name */
     .logo-center {
-        width: 650px;   /* Increase this as needed */
+        width: 650px;
         max-width: 100%;
-        justify-self: center;
     }
+
+    /* ================= Accreditation Banner ================= */
+
+    .accreditation-bar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .accreditation-logo {
+        width: 95%;
+        max-width: 1200px;
+        height: auto;
+        object-fit: contain;
+        opacity: 0.95;
+        transition: 0.3s ease;
+    }
+
+    .accreditation-logo:hover {
+        transform: scale(1.02);
+    }
+
 
 
     /* Hero Section */
     .hero {
-        min-height: 100vh;
+        min-height: 85vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -272,27 +308,7 @@
     /* ========================= MOBILE OPTIMIZATION ========================= */
     @media (max-width: 768px) {
 
-        header {
-            width: 95%;
-            padding: 1rem;
-        }
-
-        nav {
-            display: none;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-        }
-
-        .events-grid,
-        .detail-grid {
-            grid-template-columns: 1fr;
-        }
-
-        /* Top Logos Layout */
         .top-institutional-bar {
-            display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
@@ -306,26 +322,29 @@
         .logo-center {
             width: 220px;
         }
+
+        .accreditation-logo {
+            width: 100%;
+        }
     }
+
 
     </style>
 
 </head>
 <body>
 
-    <div class="top-institutional-bar">
+    <div class="top-institutional-wrapper">
 
-        <img src="assets/images/KPRIT-JNTUH-Logo.png"
-            alt="JNTUH Logo"
-            class="logo-left">
+        <div class="top-institutional-bar">
+            <img src="assets/images/KPRIT-JNTUH-Logo.png" class="logo-left" alt="KPRIT Logo">
+            <img src="assets/images/KPRES-Logo.png" class="logo-center" alt="Kommuri Pratap Reddy Educational Society">
+            <img src="assets/images/KPRIT-OU-Logo.png" class="logo-right" alt="KPRIT College of Engineering">
+        </div>
 
-        <img src="assets/images/KPRES-Logo.png"
-            alt="KPRES Logo"
-            class="logo-center">
-
-        <img src="assets/images/KPRIT-OU-Logo.png"
-            alt="OU Logo"
-            class="logo-right">
+        <div class="accreditation-bar">
+            <img src="assets/images/College-Accredations-Logo.png" class="accreditation-logo" alt="College Accreditations">
+        </div>
 
     </div>
 
@@ -410,13 +429,8 @@
         </div>
 
         <footer>
-            <div class="logo" style="margin-bottom: 1.5rem;">IM2026</div>
-            <p style="color: #555;">&copy; 2026 CSE Department. Built for Innovation.</p>
-            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; font-size: 0.8rem; font-weight: 600; color: #444;">
-                <span>INSTAGRAM</span>
-                <span>LINKEDIN</span>
-                <span>TWITTER</span>
-            </div>
+            <div class="logo" style="margin-bottom: 1.5rem;">KPRES-IM-2026</div>
+            <p style="color: #ffffff;">&copy; 2026 KPRES Innovation Marathon. All rights reserved.</p>
         </footer>
     </div>
 
