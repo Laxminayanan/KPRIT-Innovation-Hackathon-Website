@@ -365,6 +365,24 @@
         gap: 2.5rem;
     }
 
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+        justify-items: center;
+    }
+
+    .events-grid .card {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* If last row has single card — center it */
+    .events-grid .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
     /* Cards */
     .card {
         background: var(--card-bg);
@@ -372,11 +390,25 @@
         border-radius: 28px;
         padding: 2.5rem;
         transition: 0.4s;
+        width: 100%;
+        max-width: 600px;
     }
 
     .card:hover {
         transform: translateY(-10px);
         background: rgba(20, 20, 20, 0.8);
+    }
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .cards-container .card:last-child {
+        grid-column: 1 / -1;
+        max-width: 600px; /* adjust to match other cards width */
     }
 
     /* Detail Grid */
@@ -451,47 +483,174 @@
     /* ========================= MOBILE OPTIMIZATION ========================= */
     @media (max-width: 768px) {
 
-    .top-institutional-bar {
-        flex-direction: row;
-        justify-content: space-between;   /* 🔥 FIXED */
-        align-items: center;
-        gap: 8px;                         /* reduced gap */
-        padding: 0 10px;                  /* reduce side padding */
-        flex-wrap: nowrap;
+        .top-institutional-bar {
+            flex-direction: row;
+            justify-content: space-between;   /* 🔥 FIXED */
+            align-items: center;
+            gap: 8px;                         /* reduced gap */
+            padding: 0 10px;                  /* reduce side padding */
+            flex-wrap: nowrap;
+        }
+
+        .logo-left,
+        .logo-right {
+            width: 60px;                      /* 🔥 smaller logos */
+            flex-shrink: 0;
+        }
+
+        .logo-center-text {
+            flex: 1;
+            text-align: center;
+            white-space: normal;              /* 🔥 allow safe wrapping */
+        }
+
+        .logo-center-text .main-title {
+            font-size: 0.75rem;               /* smaller title */
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-center-text .address-text {
+            font-size: 0.6rem;                /* smaller address */
+            line-height: 1.2;
+        }
+
+        .accreditation-bar {
+            width: 100%;
+        }
+
+        .accreditation-logo {
+            width: 100%;
+            height: auto;
+        }
     }
 
-    .logo-left,
-    .logo-right {
-        width: 60px;                      /* 🔥 smaller logos */
-        flex-shrink: 0;
-    }
 
-    .logo-center-text {
-        flex: 1;
+    /* ============================= */
+    /* KPRES Affiliation Section     */
+    /* ============================= */
+
+    .kpres-affiliations {
         text-align: center;
-        white-space: normal;              /* 🔥 allow safe wrapping */
+        margin-top: 40px;
+        margin-bottom: 20px;
     }
 
-    .logo-center-text .main-title {
-        font-size: 0.75rem;               /* smaller title */
-        letter-spacing: 0.5px;
-        line-height: 1.2;
+    .affiliation-label {
+        display: block;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 15px;
+        font-weight: 500;
     }
 
-    .logo-center-text .address-text {
-        font-size: 0.6rem;                /* smaller address */
-        line-height: 1.2;
+    .affiliation-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 
-    .accreditation-bar {
+    .affiliation-badge {
+        text-decoration: none;
+        padding: 10px 22px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .affiliation-badge:hover {
+        background: #ffffff;
+        color: #000000;
+        transform: translateY(-3px);
+    }
+
+    /* ================= RED NAV STRIP (NO WHITE BG) ================= */
+
+    .nav-strip {
         width: 100%;
+        padding: 1.5rem 0;
+        display: flex;
+        justify-content: center;
     }
 
-    .accreditation-logo {
-        width: 100%;
-        height: auto;
+    /* Desktop */
+    .nav-desktop {
+        display: flex;
+        gap: 1.2rem;
     }
-}
+
+    .nav-box {
+        background: #e3342f;
+        color: #ffffff;
+        padding: 0.7rem 1.6rem;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: 0.25s ease;
+    }
+
+    .nav-box:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+    }
+
+    /* Mobile */
+    .nav-mobile {
+        display: none;
+        position: relative;
+    }
+
+    .menu-btn {
+        background: #e3342f;
+        color: #000000;
+        border: none;
+        padding: 0.8rem 2.2rem;
+        border-radius: 16px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        flex-direction: column;
+        gap: 0.6rem;
+        z-index: 1000;
+    }
+
+    .mobile-menu a {
+        background: #e3342f;
+        color: #000000;
+        padding: 0.6rem 1.2rem;
+        border-radius: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .nav-desktop {
+            display: none;
+        }
+
+        .nav-mobile {
+            display: block;
+        }
+    }
+   
 </style>
 
 </head>
@@ -519,6 +678,31 @@
         <div class="accreditation-bar">
             <img src="assets/images/College-Accredations-Logo.png" class="accreditation-logo" alt="College Accreditations">
         </div>
+
+        <!-- ================= RED NAV STRIP (NO WHITE BG) ================= -->
+        <section class="nav-strip">
+
+            <!-- Desktop -->
+            <div class="nav-desktop">
+                <a href="#home-page" class="nav-box">Home</a>
+                <a href="#about-section" class="nav-box">About</a>
+                <a href="#schedule-section" class="nav-box">Schedule</a>
+                <a href="#events-section" class="nav-box">Explore Events</a>
+            </div>
+
+            <!-- Mobile -->
+            <div class="nav-mobile">
+                <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#home-page" onclick="toggleMenu()">Home</a>
+                    <a href="#about-section" onclick="toggleMenu()">About</a>
+                    <a href="#schedule-section" onclick="toggleMenu()">Schedule</a>
+                    <a href="#events-section" onclick="toggleMenu()">Explore Events</a>
+                </div>
+            </div>
+
+        </section>
 
     </div>
 
@@ -595,7 +779,7 @@
 
                     <div class="patron-card">
                         <p class="patron-name">Dr. K. Vamshee Krishna</p>
-                        <p class="patron-role">CSE HOD & IIC Head</p>
+                        <p class="patron-role">CSE HOD & IIC Convener</p>
                     </div>
 
                     <div class="patron-card">
@@ -708,127 +892,206 @@
 
         <footer>
             <div class="logo" style="margin-bottom: 1.5rem;">KPRES-IM-2026</div>
+
+            <div class="kpres-affiliations">
+                <span class="affiliation-label">Powered By</span>
+
+                <div class="affiliation-links">
+                    
+                    <a href="https://kpritech.ac.in/" target="_blank" class="affiliation-badge">
+                    Kommuri Pratap Reddy Institute of Technology
+                    </a>
+
+                    <a href="https://kpritcoe.in/" target="_blank" class="affiliation-badge">
+                    KPRIT College Of Engineering
+                    </a>
+
+                </div>
+            </div>
+
             <p style="color: #ffffff;">&copy; 2026 KPRES Innovation Marathon. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        const eventsData = {
-            hackathon: {
-                file: "hackathon.html"
-            },
-            techbuzz: {
-                file: "techbuzz.html"
-            },
-            prompt: {
-                file: "prompt-writing.html"
-            },
-            debugging: {
-                file: "debugging.html"
-            },
-            techhunt: {
-                file: "techhunt.html"
-            },
-            esports: {
-                file: "photography-esports.html"
-            }
-        };
+    const eventsData = {
+        hackathon: { file: "hackathon.html" },
+        techbuzz: { file: "techbuzz.html" },
+        prompt: { file: "prompt-writing.html" },
+        debugging: { file: "debugging.html" },
+        techhunt: { file: "techhunt.html" },
+        photography: { file: "photography.html" },
+        esports: { file: "esports.html" }
+    };
 
-            // --- Core Engine ---
-            function init() {
-                renderEvents();
-                handleScroll();
-            }
+    // ===============================
+    // Footer Affiliation Animation
+    // ===============================
+    document.addEventListener("DOMContentLoaded", function () {
+        const badges = document.querySelectorAll(".affiliation-badge");
 
-            function renderEvents() {
-                const grid = document.getElementById('events-list');
-                grid.innerHTML = `
-                    <div class="card" onclick="openEventPage('hackathon')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">FLAGSHIP EVENT</div>
-                        <h3>Innovation Hackathon</h3>
-                        <p>24 Hours. One Prototype. Unlimited Impact.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Enter Hackathon <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
+        badges.forEach((badge, index) => {
+            badge.style.opacity = "0";
+            badge.style.transform = "translateY(20px)";
 
-                    <div class="card" onclick="openEventPage('techbuzz')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">TECHNICAL QUIZ</div>
-                        <h3>Tech Buzz</h3>
-                        <p>Fastest fingers, sharpest minds.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Face the Buzz <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
+            setTimeout(() => {
+                badge.style.transition = "all 0.6s ease";
+                badge.style.opacity = "1";
+                badge.style.transform = "translateY(0)";
+            }, 200 * index);
+        });
+    });
 
-                    <div class="card" onclick="openEventPage('prompt')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">AI ARENA</div>
-                        <h3>Prompt Writing</h3>
-                        <p>The art of speaking to machines.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Enter AI Arena <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
+    // --- Core Engine ---
+    function init() {
+        renderEvents();
+        handleScroll?.(); // Safe call if handleScroll exists
+    }
 
-                    <div class="card" onclick="openEventPage('debugging')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">CODING CHALLENGE</div>
-                        <h3>Debugging</h3>
-                        <p>Find the needle in the stack trace.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Open Challenge <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
+    function renderEvents() {
+        const grid = document.getElementById('events-list');
+        if (!grid) return;
 
-                    <div class="card" onclick="openEventPage('techhunt')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">EXPERIENTIAL</div>
-                        <h3>Tech Hunt</h3>
-                        <p>Decode the campus.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Start Hunt <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
+        grid.innerHTML = `
+            <div class="card" onclick="openEventPage('hackathon')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    FLAGSHIP EVENT
+                </div>
+                <h3>Innovation Hackathon</h3>
+                <p>24 Hours. One Prototype. Unlimited Impact.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Enter Hackathon <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
 
-                    <div class="card" onclick="openEventPage('esports')">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">CREATIVITY & COMPETITIVE GAMING</div>
-                        <h3>Photography & E-Sports</h3>
-                        <p>Enter the battlefield.</p>
-                        <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                            Capture & Compete <span style="font-size: 1.2rem;">→</span>
-                        </div>
-                    </div>
-                `;
-            }
+            <div class="card" onclick="openEventPage('techbuzz')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    TECHNICAL QUIZ
+                </div>
+                <h3>Tech Buzz</h3>
+                <p>Fastest fingers, sharpest minds.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Face the Buzz <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
 
-            function openEventPage(eventId) {
-                const fileName = eventsData[eventId].file;
-                window.location.href = "events/" + fileName;
-            }
+            <div class="card" onclick="openEventPage('prompt')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    AI ARENA
+                </div>
+                <h3>Prompt Writing</h3>
+                <p>The art of speaking to machines.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Enter AI Arena <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
 
-            function scrollToId(id) {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            <div class="card" onclick="openEventPage('debugging')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    CODING CHALLENGE
+                </div>
+                <h3>Debugging</h3>
+                <p>Find the needle in the stack trace.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Open Challenge <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
 
+            <div class="card" onclick="openEventPage('techhunt')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    EXPERIENTIAL
+                </div>
+                <h3>Tech Hunt</h3>
+                <p>Decode the campus.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Start Hunt <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
 
-            init();
+            <div class="card" onclick="openEventPage('esports')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    COMPETITIVE GAMING
+                </div>
+                <h3>E-Sports</h3>
+                <p>Enter the battlefield.</p>
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Compete & Win <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
+
+           <div class="card" onclick="openEventPage('photography')">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 7h4l2-2h4l2 2h4v12H4z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </div>
+
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
+                    CREATIVE SHOWCASE
+                </div>
+
+                <h3>Photography</h3>
+
+                <p>
+                    Frame innovation. Capture moments that define the spirit of the marathon.
+                </p>
+
+                <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Capture & Compete <span style="font-size: 1.2rem;">→</span>
+                </div>
+            </div>
+
+        `;
+    }
+
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        if (!menu) return;
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function openEventPage(eventId) {
+        const fileName = eventsData[eventId].file;
+        window.location.href = "events/" + fileName;
+    }
+
+    function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    init();
     </script>
 </body>
 </html>
