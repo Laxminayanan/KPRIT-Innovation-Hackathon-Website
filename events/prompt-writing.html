@@ -12,8 +12,6 @@
         :root {
             --bg: #030303;
             --text: #ffffff;
-            --primary: #8b5cf6;
-            --secondary: #06b6d4;
             --glass: rgba(255,255,255,0.03);
             --glass-border: rgba(255,255,255,0.08);
             --card-bg: rgba(10,10,10,0.6);
@@ -51,18 +49,11 @@
         header {
             position: fixed;
             top: 20px;
-            left: 75%;
-            transform: translateX(-50%);
-            width: 10%;
-            max-width: 1200px;
-            padding: 1rem 2rem;
-            background: rgba(10,10,10,0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            right: 35px;      /* ← adjust this value to move more/less right */
+            background: transparent;
+            border: none;
+            padding: 0;
+            backdrop-filter: none;
             z-index: 1000;
         }
 
@@ -147,8 +138,9 @@
             background: rgba(20,20,20,0.8);
         }
 
+    
         .card p, .card li {
-            color: #aaa;
+            color: #ffffff; /*Change Color For The Content Of Each Section*/
             line-height: 1.8;
         }
 
@@ -194,6 +186,43 @@
             color: #555;
         }
 
+        /* Back to Home Red Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0.85rem 1.8rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ffffff;
+            text-decoration: none;
+
+            background: linear-gradient(180deg, #ff3b3b, #d80000);
+            border-radius: 14px; /* 👈 single clean rounded edge */
+
+            box-shadow: none; /* 👈 removes extra square/glow */
+
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(180deg, #ff4d4d, #e00000);
+        }
+
+        .back-btn:active {
+            transform: translateY(0);
+        }
+
+        code {
+            background-color: #111;
+            color: #00ffcc;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             header { width: 95%; padding: 0.8rem 1.2rem; }
         }
@@ -205,108 +234,244 @@
 <div class="glow-sphere" style="bottom:-10%;right:-10%;background:var(--secondary);"></div>
 
 <header>
-    <a href="../index.html">← Back to Home</a>
+    <a href="../index.html" class="back-btn"> Back to Home</a>
 </header>
 
 <section class="hero">
     <h1>Prompt Writing</h1>
-    <p>Creative AI-based technical prompt challenge.</p>
+    <p>Think Clearly. Prompt Precisely. Create Intelligently.</p>
 </section>
+
 <div class="section-container">
 
-    <h2 class="section-title">Activity Objective</h2>
+    <h2 class="section-title">Event Objective</h2>
     <div class="card">
-        <p>Participants will be given a set of code snippets with intentional bugs. The goal is to identify and fix the bugs within a limited time frame.</p>
+         <p>
+            The Prompt Writing Challenge is conducted to assess participant’s proficiency in structured prompt engineering, analytical thinking, and effective interaction with Artificial Intelligence systems. The event evaluates clarity, logical structuring, creativity, and technical precision in prompt construction.
+        </p>
     </div>
 
-    <h2 class="section-title">Activity Coordinator</h2>
-    <div class="card">
-        <ul>
-            <li>Name-1</li>
-            <li>Name-2</li>
-            <li>Name-3</li>
-        </ul>
-    </div>
-   
     <h2 class="section-title">Date & Venue</h2>
     <div class="card">
         <ul>
-            <li>Mention The Exact Date When The Activity Is Conducted</li> 
-            <!-- Deepesh We Will Use Emojis Like Calender Symbol & etc. -->
-            <li>Mention The Exact Location Where  The Activity Is Conducted</li> 
-            <!-- Deepesh We Will Use Emojis Like Landmark, Building, etc. -->
-            <p><strong>Date:</strong> 12–13 March 2026</p>
-            <p><strong>Venue:</strong> Innovation Lab – Block C</p>
-    </ul>
-</div>
-
-<h2 class="section-title">Activity Timeline</h2>
-<div class="card">
-    <ul>
-        <li>Mention The Exact Timeline Of The Activity.</li> 
-        <li>Start And End Timelines.</li> 
-        <!-- Deepesh We Will Use Emojis Like Calender Symbol & etc. -->
-        <p><strong>Start Time:</strong> 10:00 AM</p>
-        <p><strong>Expected End:</strong> 02:00 PM (Next Day)</p>
+            <li><strong>Date:</strong> <code> 24-02-2026 </code></li> 
+            <li><strong>Venue 📍:</strong> KPRIT D-109</li> 
         </ul>
     </div>
+    
+    <h2 class="section-title">Event Duration & Structured Timeline</h2>
+
+    <div class="card">
+
+        <p class="event-intro">
+            The <strong>Prompt Writing Challenge</strong> will officially commence at 
+            <code>1:00 PM</code> and conclude at <code>4:00 PM</code>. 
+            The event is systematically structured into three progressive levels, 
+            each designed to evaluate participants under increasing degrees of 
+            complexity and analytical depth.
+        </p>
+
+        <ul class="timeline-list">
+            <li>
+                <strong>Level 1:</strong> 
+                <code>1:15 PM – 1:45 PM</code> 
+                <br>
+                Foundational assessment round focusing on clarity and structured prompting.
+            </li>
+
+            <li>
+                <strong>Level 2:</strong> 
+                <code>2:00 PM – 2:30 PM</code> 
+                <br>
+                Intermediate round introducing enhanced complexity and analytical depth.
+            </li>
+
+            <li>
+                <strong>Level 3:</strong> 
+                <code>2:45 PM – 3:15 PM</code> 
+                <br>
+                Final and advanced evaluation round demanding precision and creativity.
+            </li>
+        </ul>
+
+        <p class="event-note">
+            Short transition intervals between rounds are allocated to ensure smooth 
+            coordination and systematic progression of the event. All participants 
+            are required to strictly adhere to the specified time schedule.
+        </p>
+
+    </div>
+
 
     <h2 class="section-title">Team Formation</h2>
     <div class="card">
         <ul>
-            <li>Mention The Exact Complete And Effective Team Formation Process.</li> 
+            <p> This is an individual participation event. Each participant will independently compete across all three levels. There will be no elimination rounds, and every registered participant will attempt all three prompt-writing challenges. </p> 
+
+            <li>
+                Registration for this event is strictly limited to the first <strong><code> 90 </code> participants</strong>.
+            </li>
+            <li>
+                Entries will be accepted on a <strong>First Come, First Served (FCFS)</strong> basis.
+            </li>
+            <li>
+                Participants are advised to complete their registration promptly, as any entries beyond the first <code>90</code> will not be considered.
+            </li>
         </ul>
     </div>
-
-    <h2 class="section-title">Rules</h2>
+  
+    <h2 class="section-title">Complete Event Workflow</h2>
     <div class="card">
-        <ol>
-            <li>Fresh development only.</li>
-            <li>No plagiarism allowed.</li>
-            <li>Teams must present live demo.</li>
-            <li>Judges’ decision is final.</li>
-        </ol>
+    <ul>
+        <li>
+            At the start of each level, one image will be shown on the projector.
+        </li>
 
-        <p class="highlight-warning">
-            Please read the complete guidelines carefully. No repetition of instructions will be provided during the activity.
-        </p>
+        <li>
+            Participants must look at the image carefully and write an AI prompt based on it.
+        </li>
+        
+        <li>
+            Each level will become slightly more difficult than the previous one.
+        </li>
+        
+        <li>
+            Participants are allowed to use AI tools, mobile phones, laptops, and other electronic devices.
+        </li>
+        
+        <li>
+            After completing all three levels, participants must submit all three prompts through the official link provided on the event page.
+        </li>
+        
+        <li>
+            All submitted prompts will be reviewed and evaluated to determine the final results.
+        </li>
+        
+    </ul>
+</div>
+
+
+<h2 class="section-title">Judging Criteria</h2>
+<div class="card">
+    <ul>
+        <li>
+            Evaluation criteria include clarity of instruction, contextual relevance to the displayed image, creativity, technical structuring, and overall effectiveness in communicating with AI systems.
+        </li>
+
+        <li>
+            All three levels will be evaluated independently, and scores will be awarded for each level separately.
+        </li>
+
+        <li>
+            The evaluation process is conducted entirely by a designated AI tool by comparing each participant’s prompt output with the ideal reference output shown for the level.
+        </li>
+
+        <li>
+            The participant whose prompt output most closely matches the ideal result will receive the points for that level.
+        </li>
+
+        <li>
+            Other participants will not receive points for that specific comparison.
+        </li>
+
+        <li>
+            The same AI-based comparison process will be repeated for Level 1, Level 2, and Level 3.
+        </li>
+
+        <li>
+            Scores will accumulate across all three levels.
+        </li>
+
+        <li>
+            The participant with the highest total cumulative score will be declared the winner.
+        </li>
+
+        <li>
+            Since evaluation is performed entirely by an AI system and not by humans, the process remains unbiased and objective.
+        </li>
+        
+        
+    </ul>
+</div>
+
+<h2 class="section-title">Rules & Guidelines</h2>
+<div class="card">
+    <ol>
+        <ul>
+            <li>
+                Participants must report to the venue at least 10 minutes before the event starts.
+            </li>
+
+            <li>
+                All participants must strictly follow the time limits for each level.
+            </li>
+
+            <li>
+                The use of AI tools, mobile phones, laptops, and other electronic devices is allowed.
+            </li>
+
+
+            <li>
+                Please ensure that the prompt you create is fully compatible with <code> Google Gemini AI </code> and properly formatted, as it will be validated and processed exclusively using <code> Google Gemini AI </code>.
+
+            </li>
+
+            <li>
+                Participants must maintain discipline and follow academic integrity throughout the event.
+            </li>
+
+            <li>
+                There are no elimination rounds. All participants must complete all three levels to be eligible for final evaluation.
+            </li>
+
+            <li>
+                The decision of the evaluation panel will be final and binding.
+            </li>
+
+            <li>
+                Participants are advised to read all guidelines carefully. Instructions will not be repeated during the event.
+            </li>
+        </ul>
+    </ol>
+
+    <p class="highlight-warning">
+        Please read the complete guidelines carefully. No repetition of instructions will be provided during the event.
+    </p>
+</div>
+
+  <h2 class="section-title">Activity Coordinator</h2>
+    <div class="card">
+       <h2>Faculty Coordinators</h2>
+            <ul>
+                <li>S. Naresh Kumar</li>
+                <li>V. Jyothi</li>
+            </ul>
+
+            <h2>Student Coordinators</h2>
+            <ul>
+                <li>N. Pujitha</li>
+                <li>M. Sai Jyothsna</li>
+                <li>M. Shivani</li>
+                <li>V. Bhavana</li>
+                <li>R. Nithya</li>
+                <li>T. Shravya</li>
+            </ul>
     </div>
-
+      
     
-    <h2 class="section-title">Complete Activity Workflow</h2>
-    <div class="card">
-        <ul>
-            <li>Mention The Complete Activity Workflow From Start To End.</li> 
-        </ul>
-    </div>
-
-    <h2 class="section-title">Judging Criteria</h2>
-    <div class="card">
-        <ul>
-            <li>Clearly Define The Basis On Which The Final Winner Will Be Selected.</li> 
-        </ul>
-    </div>
-
-    <h2 class="section-title">Rewards And Prizes</h2>
-    <div class="card">
-        <ul>
-            <li>Mention All The Rewards And Prizes For The Each And Every Activity.</li> 
-            <p><strong>1st Prize:</strong> ₹10,000 + Trophy + Certificate</p>
-            <p><strong>2nd Prize:</strong> ₹5,000 + Medal + Certificate</p>
-            <p><strong>Participation:</strong> Digital Certificates</p>
-        </ul>
-    </div>
-
     <div class="btn-wrapper">
-        <a href="https://www.github.com/laxminayanan" target="_blank" class="btn">Register Now</a>
+        <a href="https://forms.gle/HbZucBnbc47tFtdf7" target="_blank" class="btn">Register Now</a>
     </div>
 
 </div>
 
 <footer>
-    © 2026 KPRES Innovation Marathon. All rights reserved.
+    © 2026 KPRES Innovation Hackathon All rights reserved.
 </footer>
+
 </body>
 </html>
+
+
 
 
