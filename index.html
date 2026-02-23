@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,7 @@
     :root {
         --bg: #000000;
         --text: #ffffff;
-        --primary: #8b5cf6;
+        --primary: #ffbb00;
         --secondary: #06b6d4;
         --accent: #f43f5e;  
         --glass: rgba(255, 255, 255, 0.03);
@@ -234,22 +236,49 @@
     }
 
 
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
 
-    /* Hero Section */
-   .hero {
+
+    /* ================= HERO SECTION ================= */
+
+    .hero {
         position: relative;
-        min-height: 100vh;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        text-align: center;
         overflow: hidden;
+
+        /* Controlled vertical spacing */
+        padding: clamp(60px, 8vh, 120px) 20px;
+    }
+
+    .hero-bg-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 70vh;
+        width: auto;
+        opacity: 0.10;
+        z-index: 0;
+        pointer-events: none;
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
-        text-align: center;
     }
+
+    /* Optional slight visual correction (remove if not needed) */
+    /*
+    .hero-content {
+        transform: translateY(8px);
+    }
+    */
 
     .hero-badge {
         padding: 6px 16px;
@@ -278,23 +307,6 @@
         font-size: 1.25rem;
         margin-bottom: 3rem;
     }
-
-    .hero-bg-image {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-height: 200vh;
-        width: auto;
-        opacity: 0.12;
-        z-index: 1;
-    }
-
-    .hero > *:not(.hero-bg-image) {
-        position: relative;
-        z-index: 1;
-    }
-
 
 
 
@@ -523,6 +535,34 @@
             width: 100%;
             height: auto;
         }
+
+
+        /* ================= EVENTS MOBILE FIX ================= */
+
+        .events-grid {
+            grid-template-columns: 1fr;   /* Makeing it single column */
+            gap: 1.5rem;
+        }
+
+        .events-grid .card {
+            max-width: 100%;
+        }
+
+        /* Remove centering behavior */
+        .events-grid .card:last-child:nth-child(odd) {
+            grid-column: auto;
+        }
+
+        /* Hide desktop nav on mobile */
+        .nav-desktop {
+            display: none;
+        }
+
+        /* Show mobile  button */
+        .nav-mobile {
+            display: block;
+        }
+
     }
 
 
@@ -576,17 +616,14 @@
 
     .nav-strip {
         width: 100%;
-        padding: 1.5rem 0;
+        padding: 1.5rem 5%;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        justify-content: center; /* desktop centered */
+        position: relative;
     }
 
-    /* Desktop */
-    .nav-desktop {
-        display: flex;
-        gap: 1.2rem;
-    }
-
+    
     .nav-box {
         background: #e3342f;
         color: #ffffff;
@@ -597,60 +634,384 @@
         text-decoration: none;
         transition: 0.25s ease;
     }
-
+    
     .nav-box:hover {
         transform: translateY(-3px);
         opacity: 0.9;
     }
+    
+    /* Desktop Default */
+    .nav-desktop {
+        display: flex;
+        gap: 2rem; 
+    }
 
-    /* Mobile */
     .nav-mobile {
         display: none;
-        position: relative;
+        position: absolute;   /* ✅ remove from flex center */
+        right: 5%; 
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .nav-desktop {
+            display: none !important;
+        }
+
+        .nav-mobile {
+            display: block !important;
+        }
     }
 
     .menu-btn {
         background: #e3342f;
-        color: #000000;
         border: none;
-        padding: 0.8rem 2.2rem;
+        padding: 0.6rem 1.2rem;
         border-radius: 16px;
         font-weight: 900;
         cursor: pointer;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .mobile-menu {
-        position: absolute;
-        top: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
+    .hamburger {
+        color: #ffffff;   /* white ☰ */
+        font-size: 1.4rem;
+    }
+
+    .menu-text {
+        color: #000000;   /* black Explore */
+    }
+
+    /* ================= MOBILE SIDEBAR ================= */
+
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+        z-index: 999;
+    }
+
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: -260px;
+        width: 240px;
+        height: 100vh;
+        background: #111;
+        display: flex;
         flex-direction: column;
-        gap: 0.6rem;
+        padding: 2rem;
+        gap: 1.2rem;
+        transition: 0.35s ease;
         z-index: 1000;
+        box-shadow: -10px 0 40px rgba(0,0,0,0.6);
     }
 
-    .mobile-menu a {
-        background: #e3342f;
-        color: #000000;
-        padding: 0.6rem 1.2rem;
-        border-radius: 12px;
-        font-weight: 800;
+    .mobile-sidebar a {
+        color: #fff;
         text-decoration: none;
-        text-align: center;
+        font-weight: 700;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.05);
+        transition: 0.3s;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-        .nav-desktop {
+    .mobile-sidebar a:hover {
+        background: #e3342f;
+        color: #000;
+    }
+
+    /* Active State */
+    .mobile-sidebar.active {
+        right: 0;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Only Mobile */
+    @media (min-width: 769px) {
+        .mobile-sidebar,
+        .menu-overlay {
             display: none;
         }
+    }
+    
 
-        .nav-mobile {
-            display: block;
+
+    /* ================= MAINTENANCE NOTICE ================= */
+
+    .maintenance-notice {
+        width: 100%;
+        padding: 1.2rem 5%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .maintenance-content {
+        max-width: 1200px;
+        width: 100%;
+        background: linear-gradient(90deg, #ffffff, #ffffff);
+        border-radius: 16px;
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 0 25px rgba(227, 52, 47, 0.4);
+        animation: pulseGlow 2s infinite alternate;
+    }
+
+    .maintenance-icon {
+        font-size: 1.8rem;
+    }
+
+    .maintenance-text {
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.6;
+        color: #000000;
+    }
+
+    .maintenance-text strong {
+        font-weight: 800;
+        font-size: 1rem;
+    }
+
+    /* Glow Animation */
+    @keyframes pulseGlow {
+        from { box-shadow: 0 0 15px rgba(227, 52, 47, 0.3); }
+        to { box-shadow: 0 0 35px rgba(227, 52, 47, 0.6); }
+    }
+
+
+    .highlight-red {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 1.05rem;
+    }
+
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+        .maintenance-content {
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .maintenance-text {
+            font-size: 0.85rem;
         }
     }
-   
+
+
+    .highlight-green-bg {
+        background-color: rgb(72, 255, 0);
+        color: rgb(0, 0, 0);        
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+
+    .highlight-test-bg {
+        background-color: rgb(0, 255, 213);
+        color: rgb(0, 0, 0);        
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+
+
+
+    /* ============================= */
+    /* FAANG LEVEL SCHEDULE SECTION  */
+    /* ============================= */
+
+    #schedule-section {
+        padding: 120px 8%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .schedule-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .schedule-header h2 {
+        font-size: 3rem;
+        font-family: var(--font-heading);
+        letter-spacing: -1px;
+    }
+
+    .schedule-header p {
+        color: #888;
+        margin-top: 1rem;
+    }
+
+    /* Timeline Container */
+    .timeline {
+        position: relative;
+        margin-top: 3rem;
+    }
+
+    /* Vertical Line */
+    .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(var(--primary), var(--secondary));
+        opacity: 0.4;
+    }
+
+    /* Timeline Item */
+    .timeline-item {
+        position: relative;
+        width: 50%;
+        padding: 2rem 3rem;
+        box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 50%;
+    }
+
+    /* Glass Card */
+    .timeline-content {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 1.8rem;
+        transition: 0.4s ease;
+        backdrop-filter: blur(20px);
+    }
+
+    .timeline-content:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+    }
+
+    /* Time Badge */
+    .time-badge {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--secondary);
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+    }
+
+    /* Dot */
+    .timeline-item::after {
+        content: "";
+        position: absolute;
+        top: 35px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 15px var(--primary);
+    }
+
+    .timeline-item:nth-child(odd)::after {
+        right: -8px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+        left: -8px;
+    }
+
+    /* Day Divider */
+    .day-divider {
+        text-align: center;
+        margin: 5rem 0 3rem;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--primary);
+        letter-spacing: 1px;
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 768px) {
+
+        .timeline::before {
+            left: 8px;
+        }
+
+        .timeline-item {
+            width: 100%;
+            padding-left: 2.5rem;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:nth-child(odd),
+        .timeline-item:nth-child(even) {
+            left: 0;
+            text-align: left;
+        }
+
+        .timeline-item::after {
+            left: 0;
+        }
+    }
+
+   /* Enhanced Back-to-Top Button */
+    .back-to-home {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        width: 55px;
+        height: 55px;
+        background-color: #e3342f; /* Bright Red */
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 40px; /* Slightly rounded corners */
+        cursor: pointer;
+        transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+    /* Show when scroll down */
+    .back-to-home.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Arrow & Text spacing */
+    .back-to-home span {
+        font-size: 0.8rem;
+        margin-top: 4px;
+    }
+    
 </style>
 
 </head>
@@ -688,24 +1049,83 @@
                 <a href="#about-section" class="nav-box">About</a>
                 <a href="#schedule-section" class="nav-box">Schedule</a>
                 <a href="#events-section" class="nav-box">Explore Events</a>
+                <a href="#updates-section" class="nav-box">Recent Updates</a>
             </div>
 
             <!-- Mobile -->
             <div class="nav-mobile">
-                <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+                <button class="menu-btn" onclick="toggleMenu()">
+                <span class="hamburger">☰</span>
+                <span class="menu-text">Explore</span>
+            </button>
+            </div>
 
-                <div class="mobile-menu" id="mobileMenu">
-                    <a href="#home-page" onclick="toggleMenu()">Home</a>
-                    <a href="#about-section" onclick="toggleMenu()">About</a>
-                    <a href="#schedule-section" onclick="toggleMenu()">Schedule</a>
-                    <a href="#events-section" onclick="toggleMenu()">Explore Events</a>
-                </div>
+            <!-- Overlay -->
+            <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+            <!-- Sidebar -->
+            <div class="mobile-sidebar" id="mobileSidebar">
+                <a href="#home-page" onclick="toggleMenu()">Home</a>
+                <a href="#about-section" onclick="toggleMenu()">About</a>
+                <a href="#schedule-section" onclick="toggleMenu()">Schedule</a>
+                <a href="#events-section" onclick="toggleMenu()">Explore Events</a>
+                <a href="#updates-section" onclick="toggleMenu()">Recent Updates</a>
             </div>
 
         </section>
 
-    </div>
 
+
+        
+        
+        
+        <!-- ================= MAINTENANCE NOTICE ================= -->
+        <div class="maintenance-notice">
+            <div class="maintenance-content">
+                <span class="maintenance-icon">⚠</span>
+                <div class="maintenance-text">
+                    <h1 style="color: red;"><strong>Registrations Opened</strong></h1>
+                    <strong><h2> Registration Guidelines: </h2></strong>
+                    <p>
+                        <h3> Please read all points carefully before registering for any specific event. </h3>
+                    </p>
+                    
+                    <ul>
+                        <li>
+                            Always check the <strong>Recent Updates</strong> section to get the latest information before proceeding.
+                            <ul>
+                                <li>On mobile, click <code> <strong> ≡ Explore </strong></code> to access Recent Updates.</li>
+                                <li>On desktop or laptop, click the <strong>Recent Updates</strong> button in the navigation bar.</li>
+                                <li>Recent Updates provide real-time information about the number of filled seats and live updates for each event.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Participants are allowed to register for only <strong>one event</strong>.
+                        </li>
+                        
+                        <li>
+                            For teams with multiple members (X1, X2, X3 … Xn), only one member should register on behalf of the entire team. This member will act as the <strong>team leader</strong>.
+                        </li>
+                        
+                        <li>
+                            Participants must carefully read all the information available on the respective event page before registering.
+                        </li>
+                        
+                        <li>
+                            The organizing committee reserves the right to accept, reject, or cancel any registration if event rules are violated.
+                        </li>
+                        
+                        <li>
+                            Registrations will close on <strong>23rd February 2026 at 9:00 PM</strong> or earlier if the required number of participants is reached.
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
 
     <div class="glow-sphere" style="top: -10%; left: -10%;"></div>
     <div class="glow-sphere" style="bottom: -10%; right: -10%; background: var(--secondary);"></div>
@@ -718,13 +1138,13 @@
             <img src="assets/images/Tech-Hub-Removed-Bg.png"
                 class="hero-bg-image"
                 alt="Tech Hub Background">
-
+                
             <div class="hero-content">
                 <h1>
                     Innovation<br>
                     <span class="hero-sub">Hackathon</span>
                 </h1>
-
+                
                 <p>
                     The ultimate Two-Day collision of technology, creativity,
                     and student excellence. Where the future is built by you.
@@ -732,7 +1152,7 @@
             </div>
 
         </section>
-
+        
             <section class="patron-section">
 
                 <h2 class="patron-title">Chief Patron</h2>
@@ -740,7 +1160,7 @@
                     <p class="patron-name">Shri. Kommuri Pratap Reddy Garu</p>
                     <p class="patron-role">Chairman - KPRES</p>
                 </div>
-
+                
                 <h2 class="patron-title">Patrons</h2>
                 <div class="patron-row">
                     <div class="patron-card">
@@ -769,19 +1189,19 @@
                         <p class="patron-role">Principal - KPRITCOE</p>
                     </div>
                 </div>
-
+                
                 <h2 class="patron-title">Organizers</h2>
                 <div class="patron-row">
                     <div class="patron-card">
                         <p class="patron-name">Mr. Anish Kr. Srivastava</p>
                         <p class="patron-role">Dean-Corporate Relation</p>
                     </div>
-
+                    
                     <div class="patron-card">
                         <p class="patron-name">Dr. K. Vamshee Krishna</p>
                         <p class="patron-role">CSE HOD & IIC Convener</p>
                     </div>
-
+                    
                     <div class="patron-card">
                         <p class="patron-name">Mr. K. Anil Kumar</p>
                         <p class="patron-role">Placement Head</p>
@@ -793,12 +1213,28 @@
                     </div>
                 </div>
 
-                <h2 class="patron-title">Program Advisors</h2>
+                <h2 class="patron-title">IIC Coordinators</h2>
+
                 <div class="patron-row">
+                    
+                    <div class="patron-card">
+                        <p class="patron-name">Mr. K. Vijay Bhaskar Reddy</p>
+                        <p class="patron-role">IIC Faculty Coordinator</p>
+                    </div>
+                    
+                    <div class="patron-card">
+                        <p class="patron-name">Dr. P. Kamarajapandian</p>
+                    </div>
+                    
+                    <div class="patron-card">
+                        <p class="patron-name">MS. A. Radhika</p>
+                        <p class="patron-role">H & S Coordinator</p>
+                    </div>
+                    
                     <div class="patron-card">
                         <p class="patron-name">Mr. P. Sai Krishna</p>
                     </div>
-
+                    
                     <div class="patron-card">
                         <p class="patron-name">Mr. YVD Chandra Sekhar</p>
                     </div>
@@ -819,15 +1255,22 @@
                         <p class="patron-name">Ms. D. Gayatri Devi Reddy</p>
                     </div>
                 </div>
-
+                
             </section>
-
+            
             <section id="about-section" class="section-container">
                 <div class="detail-card" style="text-align: center; border-color: var(--primary);">
-                    <h2 style="font-size: 3.5rem;">2 Days. 6 Events.<br>Infinite Possibilities.</h2>
+                    <h2 style="font-size: 3.5rem;">
+                        <span style="color: yellow;">2</span> Days <br>
+                        <span style="color: yellow;">7</span> Events<br>
+                        <span style="color: rgb(255, 0, 0); font-size: 4rem;">Infinite</span> Possibilities.
+                    </h2>
                     <p style="max-width: 800px; margin: 2rem auto; font-size: 1.2rem; line-height: 1.8;">
-                        Innovation Marathon is more than just a festival. It's an ecosystem designed to push your technical boundaries. 
-                        From deep-level debugging to high-level system design, we provide the platform; you provide the brilliance.
+                        Innovation Hackathon is a strategically structured two-day technical convergence focused on analytical excellence and innovation.
+                        It integrates competitive challenges, applied technology experiences, and AI-driven exploration within a unified platform.
+                        The event fosters interdisciplinary collaboration, strategic thinking, and performance under pressure.
+                        Participants engage in problem-solving environments that reward precision, creativity, and impact.
+                        We provide the ecosystem — you demonstrate the expertise.
                     </p>
 
                     <div style="margin-top: 2rem;">
@@ -848,6 +1291,181 @@
                 <div class="events-grid" id="events-list">
                     <!-- Events injected by JS -->
                 </div>
+                
+                <section id="updates-section" class="section-container">
+                    <div class="grid-header">
+                        <h1 style="color: #e3342f;">Recent Updates</h1>
+                        <p>Stay informed with the latest announcements.</p>
+                        <br> <br>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="highlight-test-bg">Prompt Writing Update</span> 
+                        <br><br>
+                        <p><strong style="color: #ff0000;">Registrations for Prompt Writing are now extended.</strong></p>
+                        <p>We had previously set the registration limit at 90 participants, and we have now increased it by an additional 10 registrations.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="highlight-test-bg"> Innovation Hackathon Venue Changed </span> 
+                        <br><br>
+                        <strong style="color: #ff00c8;">
+                                    Venue: 
+                                    <span style="color: white;">A - Block</span>, 
+                                    <span style="color: white;">303</span>, 
+                                    <span style="color: white;">305</span> and 
+                                    <span style="color: white;">307</span>.
+                                    
+                        </strong>
+                    </div>
+            
+                    <div class="events-grid">
+                                
+                        <div class="card">
+                            <span class="highlight-test-bg">Tech Hunt Update</span> 
+                            <br><br>
+                            <p><strong style="color: #ff0000;">Registrations for Tech Hunt are now closed.</strong></p>
+                                <p><strong style="color: #ff0000;">All 20 registrations for Tech Hunt are now completed.</strong></p>
+                                <p>Participants are encouraged to explore other events and register for available slots.</p>
+                            </div>
+                                
+                                
+                                
+                                
+                        <div class="card">
+                            <span class="highlight-test-bg"> Registration Confirmation </span> 
+                            <br><br>
+                            <p>
+                                <strong style="color: #ff00c8;">
+                                    For the events 
+                                    <span style="color: white;">Innovation Hackathon</span>, 
+                                    <span style="color: white;">Tech Hunt</span>, 
+                                    <span style="color: white;">Tech Buzz</span> and 
+                                    <span style="color: white;">Prompt Writing</span>, 
+                                    an official confirmation email will be sent by our technical team to verify the registration of each individual team.
+                                    <br><br>
+                                    <span style="color: white;">
+                                        Only participants who receive the confirmation email are allowed to attend the event at the scheduled time.
+                                    </span>
+                                </strong>
+                            </p>
+                        </div>
+            
+                        <div class="card">
+                            <span class="highlight-test-bg"> Registrations Opened </span> 
+                            <br><br>
+                            <p><strong style="color: #ff00c8;">Follow the information on each event page and register accordingly.</strong></p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            
+            <!-- ================= SCHEDULE SECTION ================= -->
+            <section id="schedule-section">
+                
+                <div class="schedule-header">
+                    <h2>Schedule</h2>
+                    <p>Strategically designed programming delivered across two power-packed days.</p>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="day-divider">24th Feb 2026 — Day 1</div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">10:00 AM</div>
+                            <h3>Inauguration & Lamp Lighting</h3>
+                            <p>Formal opening ceremony with dignitaries and institutional leaders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">10:10 AM</div>
+                            <h3>Classical Performance</h3>
+                            <p>Traditional cultural performance marking the ceremonial beginning.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">10:20 AM – 11:30 AM</div>
+                            <h3>Dignitary Address & Innovation Briefing</h3>
+                            <p>Welcome address, event overview, and strategic vision of the Innovation Hackathon.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">11:35 AM – 12:00 PM</div>
+                            <h3>Official Event Kickoff</h3>
+                            <p>Instructions to participants and commencement of competitive events.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">12:10 PM – 12:45 PM</div>
+                            <h3>Networking Lunch</h3>
+                            <p>Interaction opportunity for participants, mentors, and faculty.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">1:00 PM – 4:00 PM</div>
+                            <h3>Parallel Technical Events</h3>
+                            <p>Innovation Hackathon, Debugging, Prompt Writing, Tech Hunt, E-Sports & more conducted simultaneously.</p>
+                        </div>
+                    </div>
+
+                    <div class="day-divider">25th Feb 2026 — Day 2</div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">09:30 AM – 12:30 PM</div>
+                            <h3>Continuation of Events</h3>
+                            <p>Completion of remaining competitions and evaluations.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">12:30 PM – 1:30 PM</div>
+                            <h3>Networking Lunch</h3>
+                            <p>Interaction opportunity for participants, mentors, and faculty.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">2:00 PM – 2:45 PM</div>
+                            <h3>Closing Keynote</h3>
+                            <p>Insights from leadership on innovation, entrepreneurship and future technologies.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">2:50 PM – 4:00 PM</div>
+                            <h3>Prize Distribution Ceremony</h3>
+                            <p>Recognition of winners and top-performing teams.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="time-badge">4:00 PM – 4:30 PM</div>
+                            <h3>Vote of Thanks</h3>
+                            <p>Formal closure and gratitude to participants, organizers, and sponsors.</p>
+                        </div>
+                    </div>
+
+                </div>
+
             </section>
         </div>
 
@@ -891,7 +1509,7 @@
         </div>
 
         <footer>
-            <div class="logo" style="margin-bottom: 1.5rem;">KPRES-IM-2026</div>
+            <div class="logo" style="margin-bottom: 1.5rem;">KPRES-IH-2026</div>
 
             <div class="kpres-affiliations">
                 <span class="affiliation-label">Powered By</span>
@@ -909,8 +1527,14 @@
                 </div>
             </div>
 
-            <p style="color: #ffffff;">&copy; 2026 KPRES Innovation Marathon. All rights reserved.</p>
+            <p style="color: #ffffff;">&copy; 2026 KPRES Innovation Hackathon. All rights reserved.</p>
         </footer>
+    </div>
+
+
+    <!-- Back to Home Button -->
+    <div class="back-to-home" onclick="scrollToTop()">
+        ⬆
     </div>
 
     <script>
@@ -945,7 +1569,7 @@
     // --- Core Engine ---
     function init() {
         renderEvents();
-        handleScroll?.(); // Safe call if handleScroll exists
+        handleScroll?.();
     }
 
     function renderEvents() {
@@ -965,7 +1589,7 @@
                 <h3>Innovation Hackathon</h3>
                 <p>24 Hours. One Prototype. Unlimited Impact.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Enter Hackathon <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Enter Hackathon </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
@@ -981,7 +1605,7 @@
                 <h3>Tech Buzz</h3>
                 <p>Fastest fingers, sharpest minds.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Face the Buzz <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Face the Buzz </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
@@ -997,7 +1621,7 @@
                 <h3>Prompt Writing</h3>
                 <p>The art of speaking to machines.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Enter AI Arena <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Enter AI Arena </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
@@ -1013,7 +1637,7 @@
                 <h3>Debugging</h3>
                 <p>Find the needle in the stack trace.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Open Challenge <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Open Challenge </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
@@ -1029,7 +1653,7 @@
                 <h3>Tech Hunt</h3>
                 <p>Decode the campus.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Start Hunt <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Start Hunt </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
@@ -1045,40 +1669,38 @@
                 <h3>E-Sports</h3>
                 <p>Enter the battlefield.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Compete & Win <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Compete & Win </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
 
-           <div class="card" onclick="openEventPage('photography')">
+            <div class="card" onclick="openEventPage('photography')">
                 <div class="card-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 7h4l2-2h4l2 2h4v12H4z"/>
                         <circle cx="12" cy="13" r="4"/>
                     </svg>
                 </div>
-
                 <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 0.5rem;">
                     CREATIVE SHOWCASE
                 </div>
-
                 <h3>Photography</h3>
-
-                <p>
-                    Frame innovation. Capture moments that define the spirit of the marathon.
-                </p>
-
+                <p>Frame innovation. Capture moments that define the spirit of the marathon.</p>
                 <div style="font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Capture & Compete <span style="font-size: 1.2rem;">→</span>
+                    <span class="highlight-green-bg"> Capture & Compete </span> <span style="font-size: 1.2rem;">→</span>
                 </div>
             </div>
-
         `;
     }
 
     function toggleMenu() {
-        const menu = document.getElementById("mobileMenu");
-        if (!menu) return;
-        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        const sidebar = document.getElementById("mobileSidebar");
+        const overlay = document.getElementById("menuOverlay");
+
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+
+        document.body.style.overflow =
+            sidebar.classList.contains("active") ? "hidden" : "auto";
     }
 
     function openEventPage(eventId) {
@@ -1091,7 +1713,56 @@
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // ================= FIXED NAV HANDLER =================
+    const navLinks = document.querySelectorAll('.nav-box');
+    const pages = document.querySelectorAll('.page-content');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const targetId = link.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+
+            // If it's a top-level page (has page-content class), switch pages
+            if (targetEl && targetEl.classList.contains('page-content')) {
+                pages.forEach(p => p.classList.remove('active'));
+                targetEl.classList.add('active');
+            }
+            // If it's a section inside the page, scroll to it
+            else if (targetEl) {
+                // Ensure home-page is visible first
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById('home-page').classList.add('active');
+
+                // Small delay then smooth scroll
+                setTimeout(() => {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            }
+
+            // Update active nav style
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+
+    // ================= BACK TO TOP LOGIC =================
+    const backToHome = document.querySelector('.back-to-home');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            backToHome.classList.add('show');
+        } else {
+            backToHome.classList.remove('show');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     init();
-    </script>
+</script>
 </body>
 </html>
